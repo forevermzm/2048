@@ -14,6 +14,8 @@
 		D89287881B128CC800C1A51D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D89287871B128CC800C1A51D /* Images.xcassets */; };
 		D892878B1B128CC800C1A51D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89287891B128CC800C1A51D /* LaunchScreen.xib */; };
 		D89287971B128CC800C1A51D /* _048Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287961B128CC800C1A51D /* _048Tests.m */; };
+		D89287AF1B128F2900C1A51D /* Pile.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287AE1B128F2900C1A51D /* Pile.m */; };
+		D89287B11B12906900C1A51D /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287B01B12906900C1A51D /* Board.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		D89287901B128CC800C1A51D /* 2048Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 2048Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89287951B128CC800C1A51D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D89287961B128CC800C1A51D /* _048Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _048Tests.m; sourceTree = "<group>"; };
+		D89287AE1B128F2900C1A51D /* Pile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pile.m; path = Model/Pile.m; sourceTree = "<group>"; };
+		D89287B01B12906900C1A51D /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Board.m; path = Model/Board.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 		D892876E1B128CC800C1A51D = {
 			isa = PBXGroup;
 			children = (
+				D89287A01B128CF900C1A51D /* Model */,
 				D89287791B128CC800C1A51D /* 2048 */,
 				D89287931B128CC800C1A51D /* 2048Tests */,
 				D89287781B128CC800C1A51D /* Products */,
@@ -81,8 +86,6 @@
 		D89287791B128CC800C1A51D /* 2048 */ = {
 			isa = PBXGroup;
 			children = (
-				D892877E1B128CC800C1A51D /* AppDelegate.h */,
-				D892877F1B128CC800C1A51D /* AppDelegate.m */,
 				D89287811B128CC800C1A51D /* ViewController.h */,
 				D89287821B128CC800C1A51D /* ViewController.m */,
 				D89287841B128CC800C1A51D /* Main.storyboard */,
@@ -96,6 +99,8 @@
 		D892877A1B128CC800C1A51D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D892877E1B128CC800C1A51D /* AppDelegate.h */,
+				D892877F1B128CC800C1A51D /* AppDelegate.m */,
 				D892877B1B128CC800C1A51D /* Info.plist */,
 				D892877C1B128CC800C1A51D /* main.m */,
 			);
@@ -117,6 +122,15 @@
 				D89287951B128CC800C1A51D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D89287A01B128CF900C1A51D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D89287AE1B128F2900C1A51D /* Pile.m */,
+				D89287B01B12906900C1A51D /* Board.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +236,8 @@
 				D89287831B128CC800C1A51D /* ViewController.m in Sources */,
 				D89287801B128CC800C1A51D /* AppDelegate.m in Sources */,
 				D892877D1B128CC800C1A51D /* main.m in Sources */,
+				D89287AF1B128F2900C1A51D /* Pile.m in Sources */,
+				D89287B11B12906900C1A51D /* Board.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
