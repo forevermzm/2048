@@ -14,8 +14,10 @@
 		D89287881B128CC800C1A51D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D89287871B128CC800C1A51D /* Images.xcassets */; };
 		D892878B1B128CC800C1A51D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89287891B128CC800C1A51D /* LaunchScreen.xib */; };
 		D89287971B128CC800C1A51D /* _048Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287961B128CC800C1A51D /* _048Tests.m */; };
-		D89287AF1B128F2900C1A51D /* Pile.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287AE1B128F2900C1A51D /* Pile.m */; };
+		D89287AF1B128F2900C1A51D /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287AE1B128F2900C1A51D /* Tile.m */; };
 		D89287B11B12906900C1A51D /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287B01B12906900C1A51D /* Board.m */; };
+		D89287B81B12D3CF00C1A51D /* TileView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287B71B12D3CF00C1A51D /* TileView.m */; };
+		D89287C11B14068600C1A51D /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287C01B14068600C1A51D /* Grid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +44,14 @@
 		D89287901B128CC800C1A51D /* 2048Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 2048Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89287951B128CC800C1A51D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D89287961B128CC800C1A51D /* _048Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _048Tests.m; sourceTree = "<group>"; };
-		D89287AE1B128F2900C1A51D /* Pile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pile.m; path = Model/Pile.m; sourceTree = "<group>"; };
+		D89287AE1B128F2900C1A51D /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = Model/Tile.m; sourceTree = "<group>"; };
 		D89287B01B12906900C1A51D /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Board.m; path = Model/Board.m; sourceTree = "<group>"; };
+		D89287B71B12D3CF00C1A51D /* TileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TileView.m; path = View/TileView.m; sourceTree = "<group>"; };
+		D89287B91B13A16B00C1A51D /* TileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TileView.h; path = View/TileView.h; sourceTree = "<group>"; };
+		D89287BA1B13A38B00C1A51D /* Tile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = Model/Tile.h; sourceTree = "<group>"; };
+		D89287BB1B13ECD100C1A51D /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Board.h; path = Model/Board.h; sourceTree = "<group>"; };
+		D89287BF1B14068600C1A51D /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
+		D89287C01B14068600C1A51D /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,7 @@
 		D892876E1B128CC800C1A51D = {
 			isa = PBXGroup;
 			children = (
+				D89287B21B12D2DA00C1A51D /* View */,
 				D89287A01B128CF900C1A51D /* Model */,
 				D89287791B128CC800C1A51D /* 2048 */,
 				D89287931B128CC800C1A51D /* 2048Tests */,
@@ -127,10 +136,23 @@
 		D89287A01B128CF900C1A51D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D89287AE1B128F2900C1A51D /* Pile.m */,
+				D89287BA1B13A38B00C1A51D /* Tile.h */,
+				D89287AE1B128F2900C1A51D /* Tile.m */,
+				D89287BB1B13ECD100C1A51D /* Board.h */,
 				D89287B01B12906900C1A51D /* Board.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D89287B21B12D2DA00C1A51D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D89287BF1B14068600C1A51D /* Grid.h */,
+				D89287C01B14068600C1A51D /* Grid.m */,
+				D89287B91B13A16B00C1A51D /* TileView.h */,
+				D89287B71B12D3CF00C1A51D /* TileView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,8 +257,10 @@
 			files = (
 				D89287831B128CC800C1A51D /* ViewController.m in Sources */,
 				D89287801B128CC800C1A51D /* AppDelegate.m in Sources */,
+				D89287B81B12D3CF00C1A51D /* TileView.m in Sources */,
+				D89287C11B14068600C1A51D /* Grid.m in Sources */,
 				D892877D1B128CC800C1A51D /* main.m in Sources */,
-				D89287AF1B128F2900C1A51D /* Pile.m in Sources */,
+				D89287AF1B128F2900C1A51D /* Tile.m in Sources */,
 				D89287B11B12906900C1A51D /* Board.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

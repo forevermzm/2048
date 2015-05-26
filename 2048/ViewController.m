@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "TileView.h"
+#import "Grid.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIView *boardView;
 
 @end
 
@@ -17,6 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    Grid *grid = [[Grid alloc] init];
+    [grid setSize:self.boardView.bounds.size];
+    [grid setCellAspectRatio:1.0];
+    [grid setMinimumNumberOfCells:25];
+    
+    
+    
+//    CGRect viewRect = CGRectMake(10, 10, 100, 100);
+    TileView *tileView = [[TileView alloc] initWithFrame:[grid frameOfCellAtRow:0 inColumn:0]];
+    [tileView setNumber:2];
+    [self.boardView addSubview:tileView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
