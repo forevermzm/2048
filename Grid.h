@@ -52,5 +52,6 @@
 
 - (CGPoint)centerOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
+- (CGRect)resizedFrameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column withRatio:(CGFloat)ratio;
 
 @end

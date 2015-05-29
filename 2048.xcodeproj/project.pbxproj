@@ -18,6 +18,7 @@
 		D89287B11B12906900C1A51D /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287B01B12906900C1A51D /* Board.m */; };
 		D89287B81B12D3CF00C1A51D /* TileView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287B71B12D3CF00C1A51D /* TileView.m */; };
 		D89287C11B14068600C1A51D /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287C01B14068600C1A51D /* Grid.m */; };
+		D89287C41B14510000C1A51D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287C31B14510000C1A51D /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		D89287BB1B13ECD100C1A51D /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Board.h; path = Model/Board.h; sourceTree = "<group>"; };
 		D89287BF1B14068600C1A51D /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		D89287C01B14068600C1A51D /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		D89287C21B1450E600C1A51D /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Model/Game.h; sourceTree = "<group>"; };
+		D89287C31B14510000C1A51D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Model/Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 				D89287AE1B128F2900C1A51D /* Tile.m */,
 				D89287BB1B13ECD100C1A51D /* Board.h */,
 				D89287B01B12906900C1A51D /* Board.m */,
+				D89287C21B1450E600C1A51D /* Game.h */,
+				D89287C31B14510000C1A51D /* Game.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				D89287831B128CC800C1A51D /* ViewController.m in Sources */,
 				D89287801B128CC800C1A51D /* AppDelegate.m in Sources */,
 				D89287B81B12D3CF00C1A51D /* TileView.m in Sources */,
+				D89287C41B14510000C1A51D /* Game.m in Sources */,
 				D89287C11B14068600C1A51D /* Grid.m in Sources */,
 				D892877D1B128CC800C1A51D /* main.m in Sources */,
 				D89287AF1B128F2900C1A51D /* Tile.m in Sources */,

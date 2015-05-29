@@ -17,6 +17,11 @@
 
 @implementation ViewController
 
+- (void)setup
+{
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -28,9 +33,16 @@
     
     
 //    CGRect viewRect = CGRectMake(10, 10, 100, 100);
-    TileView *tileView = [[TileView alloc] initWithFrame:[grid frameOfCellAtRow:0 inColumn:0]];
+    TileView *tileView = [[TileView alloc] initWithFrame:[grid resizedFrameOfCellAtRow:0
+                                                                              inColumn:0
+                                                                             withRatio:0.9]];
+    TileView *anotherTileView = [[TileView alloc] initWithFrame:[grid resizedFrameOfCellAtRow:0
+                                                                                     inColumn:1
+                                                                                    withRatio:0.9]];
     [tileView setNumber:2];
+    [anotherTileView setNumber:4];
     [self.boardView addSubview:tileView];
+    [self.boardView addSubview:anotherTileView];
     
 }
 

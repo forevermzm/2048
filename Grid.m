@@ -117,6 +117,18 @@
     return frame;
 }
 
+- (CGRect)resizedFrameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column withRatio:(CGFloat)ratio
+{
+    CGRect originalFrame = [self frameOfCellAtRow:row inColumn:column];
+    return [self shrinkRect:originalFrame withRatio:ratio];
+}
+
+- (CGRect) shrinkRect: (CGRect) rect withRatio: (CGFloat) ratio
+{
+    CGRect newRect = CGRectMake(rect.origin.x + (1 - ratio) * rect.size.width / 2, rect.origin.y + (1 - ratio) * rect.size.height / 2, ratio * rect.size.width, ratio * rect.size.height );
+    return newRect;
+}
+
 - (void)setMinimumNumberOfCells:(NSUInteger)minimumNumberOfCells
 {
     if (minimumNumberOfCells != _minimumNumberOfCells) self.resolved = NO;
