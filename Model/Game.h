@@ -11,6 +11,17 @@
 
 @interface Game : NSObject
 
+@property (nonatomic, strong, readonly) NSArray *directionArray;
 @property (nonatomic, strong, readonly) Board *board;
+@property (nonatomic, readonly) NSUInteger totalScore;
+
+-(instancetype) initWithWidth: (NSUInteger) width
+                       Height: (NSUInteger) height;
+
+// These methods are for the gestures.
+- (void) pushTo: (NSString *) direction;
+
+
+-(BOOL) isGameFinished;
 
 @end

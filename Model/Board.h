@@ -14,11 +14,22 @@
 // Width and height are in number of piles.
 @property ( nonatomic, readonly ) NSUInteger width;
 @property ( nonatomic, readonly ) NSUInteger height;
+@property ( nonatomic, readonly ) NSUInteger numberOfRemainingSpots;
 
 // Designated Initializer.
-- ( instancetype ) initWithWidth: (NSUInteger) width Height: (NSUInteger) height;
+- ( instancetype ) initWithWidth: (NSUInteger) width
+                          Height: (NSUInteger) height;
 
-- ( void ) setTile: (Tile *) tile AtRow: (NSUInteger) row Column: (NSUInteger) column;
-- ( Tile * ) getTileAtRow: (NSUInteger) row Column: (NSUInteger) column;
+- ( void ) setTile: (Tile *) tile
+             AtRow: (NSUInteger) row
+            Column: (NSUInteger) column;
+
+- ( Tile * ) getTileAtRow: (NSUInteger) row
+                   Column: (NSUInteger) column;
+
+- (void) pushRight;
+- (void) pushLeft;
+- (void) pushUp;
+- (void) pushDown;
 
 @end

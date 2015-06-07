@@ -12,6 +12,8 @@
 // Public methods and attributes
 @interface Tile : NSObject
 
-@property (nonatomic) NSUInteger number;
+@property (nonatomic, readwrite) NSUInteger number;
+
+- ( instancetype ) initWithNumber: (NSUInteger) number;
 
 @end

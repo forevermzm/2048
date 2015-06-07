@@ -10,6 +10,13 @@
 
 @implementation Tile
 
-
+- ( instancetype ) initWithNumber: (NSUInteger) number
+{
+    self = [ super init ];
+    if (self) {
+        [self setNumber:number];
+    }
+    return self;
+}
 
 @end

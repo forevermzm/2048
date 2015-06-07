@@ -12,18 +12,24 @@
 
 @property ( nonatomic, readwrite ) NSUInteger width;
 @property ( nonatomic, readwrite ) NSUInteger height;
+@property ( nonatomic, readwrite ) NSUInteger numberOfRemainingSpots;
 @property ( nonatomic, strong ) NSMutableArray *tiles;
 
 @end
 
 @implementation Board
 
+#pragma mark - Public_api
+
+#pragma mark - Index_Swithing
+
 - ( instancetype ) initWithWidth:(NSUInteger)width Height:(NSUInteger)height
 {
     self = [ super init ];
     if ( self ) {
         [ self setWidth: width];
-        [ self setHeight:height];
+        [ self setHeight: height];
+        [ self setNumberOfRemainingSpots:width * height];
     }
     return self;
 }
@@ -57,5 +63,83 @@
     NSUInteger index = [self getIndexFromRow:row Column:column];
     return [_tiles objectAtIndex:index];
 }
+
+#pragma mark - Push_Board
+
+- (void) pushRight
+{
+    // For each row, copy the whole row from left to right to a new array, perform
+    // the action there, then copy it back.
+    for (NSInteger row = 0; row < _height; row ++) {
+        NSRange range = NSMakeRange(row * _width, _width);
+        NSMutableArray *subArrayToBePushed = [[_tiles subarrayWithRange:range] mutableCopy];
+        
+        [self pushLineToRight:subArrayToBePushed];
+       
+    }
+}
+
+
+- (void) pushLeft
+{
+    
+}
+
+- (void) pushUp
+{
+    
+}
+
+- (void) pushDown
+{
+    
+}
+
+#pragma mark - Private_API
+
+-(NSArray *) pushLineToRight: (NSMutableArray *)line
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    NSEnumerator *enumerator = [line reverseObjectEnumerator];
+    Tile *tile;
+    while ( tile = [enumerator nextObject]) {
+        if ( tile.number != 0 ) {
+            [temp addObject:tile];
+        }
+    }
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < [temp count] - 1; i ++) {
+        Tile *firstTile = [temp objectAtIndex:i];
+        Tile *secondTile = [temp objectAtIndex:i + 1];
+        if ( firstTile.number == secondTile.number ) {
+            [result addObject:[[Tile alloc] initWithNumber:firstTile.number * 2]];
+            i ++;
+        }
+    }
+    
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
