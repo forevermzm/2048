@@ -32,4 +32,7 @@
 - (void) pushUp;
 - (void) pushDown;
 
+// Should be test only.
+- (void) print;
+
 @end

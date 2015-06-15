@@ -29,6 +29,11 @@
     if ( self ) {
         [ self setWidth: width];
         [ self setHeight: height];
+        [ self setTiles:[[ NSMutableArray alloc] init]];
+        for (NSInteger i = 0; i < _width * _height; i ++) {
+            Tile *tile = [[Tile alloc] initWithNumber:0];
+            [_tiles addObject:tile];
+        }
         [ self setNumberOfRemainingSpots:width * height];
     }
     return self;
@@ -74,15 +79,31 @@
         NSRange range = NSMakeRange(row * _width, _width);
         NSMutableArray *subArrayToBePushed = [[_tiles subarrayWithRange:range] mutableCopy];
         
-        [self pushLineToRight:subArrayToBePushed];
-       
+        NSArray *result = [self pushLineToRight:[subArrayToBePushed reverseObjectEnumerator]
+                                      withCount:[subArrayToBePushed count]];
+        NSInteger column = _width - 1;
+        for (Tile *tile in result) {
+            [self setTile:tile AtRow:row Column:column];
+            column -= 1;
+        }
     }
 }
 
 
 - (void) pushLeft
 {
-    
+    for (NSInteger row = 0; row < _height; row ++) {
+        NSRange range = NSMakeRange(row * _width, _width);
+        NSMutableArray *subArrayToBePushed = [[_tiles subarrayWithRange:range] mutableCopy];
+        
+        NSArray *result = [self pushLineToRight:[subArrayToBePushed objectEnumerator]
+                                      withCount:[subArrayToBePushed count]];
+        NSInteger column = 0;
+        for (Tile *tile in result) {
+            [self setTile:tile AtRow:row Column:column];
+            column += 1;
+        }
+    }
 }
 
 - (void) pushUp
@@ -95,26 +116,44 @@
     
 }
 
+- (void) print
+{
+    int index = 0;
+    for (Tile *tile in _tiles) {
+        printf("%lu ", tile.number);
+        index ++;
+        if (index % _width == 0) {
+            printf("\n");
+        }
+    }
+    printf("\n");
+}
+
 #pragma mark - Private_API
 
--(NSArray *) pushLineToRight: (NSMutableArray *)line
+-(NSArray *) pushLineToRight: (NSEnumerator *)enumerator withCount: (NSInteger) count
 {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
-    NSEnumerator *enumerator = [line reverseObjectEnumerator];
     Tile *tile;
     while ( tile = [enumerator nextObject]) {
         if ( tile.number != 0 ) {
             [temp addObject:tile];
         }
     }
+    tile = [[Tile alloc] initWithNumber:0];
+    for (NSInteger i = [temp count]; i < count; i ++) {
+        [temp addObject:tile];
+    }
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < [temp count] - 1; i ++) {
+    for (NSInteger i = 0; i < count - 1; i ++) {
         Tile *firstTile = [temp objectAtIndex:i];
         Tile *secondTile = [temp objectAtIndex:i + 1];
         if ( firstTile.number == secondTile.number ) {
             [result addObject:[[Tile alloc] initWithNumber:firstTile.number * 2]];
             i ++;
+        } else {
+            [result addObject:firstTile];
         }
     }
     
