@@ -108,12 +108,38 @@
 
 - (void) pushUp
 {
-    
+    for (NSInteger column = 0; column < _width; column ++) {
+        NSMutableArray *columnArray = [[NSMutableArray alloc] init];
+        for (NSInteger row = 0; row < _height; row ++) {
+            [columnArray addObject:[self getTileAtRow:row Column:column]];
+        }
+        NSArray *result = [self pushLineToRight:[columnArray objectEnumerator]
+                                      withCount:[columnArray count]];
+        
+        NSInteger row = 0;
+        for (Tile *tile in result) {
+            [self setTile:tile AtRow:row Column:column];
+            row += 1;
+        }
+    }
 }
 
 - (void) pushDown
 {
-    
+    for (NSInteger column = 0; column < _width; column ++) {
+        NSMutableArray *columnArray = [[NSMutableArray alloc] init];
+        for (NSInteger row = 0; row < _height; row ++) {
+            [columnArray addObject:[self getTileAtRow:row Column:column]];
+        }
+        NSArray *result = [self pushLineToRight:[columnArray reverseObjectEnumerator]
+                                      withCount:[columnArray count]];
+        
+        NSInteger row = _height - 1;
+        for (Tile *tile in result) {
+            [self setTile:tile AtRow:row Column:column];
+            row -= 1;
+        }
+    }
 }
 
 - (void) print

@@ -98,4 +98,62 @@
     XCTAssertEqual(2, [board getTileAtRow:2 Column:1].number);
 }
 
+- (void)testBoardPushUp
+{
+    Board *board = [[Board alloc] initWithWidth:5 Height:5];
+    
+    // First Column
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:0];
+    
+    // Second Column
+    [board setTile:[[Tile alloc] initWithNumber:4] AtRow:0 Column:1];
+    [board setTile:[[Tile alloc] initWithNumber:4] AtRow:2 Column:1];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:3 Column:1];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:4 Column:1];
+
+    // Thrid column
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:0 Column:2];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:2];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:4 Column:2];
+    
+    [board pushUp];
+    
+    XCTAssertEqual(2, [board getTileAtRow:0 Column:0].number);
+    
+    XCTAssertEqual(8, [board getTileAtRow:0 Column:1].number);
+    XCTAssertEqual(4, [board getTileAtRow:1 Column:1].number);
+    
+    XCTAssertEqual(4, [board getTileAtRow:0 Column:2].number);
+    XCTAssertEqual(2, [board getTileAtRow:1 Column:2].number);
+}
+
+- (void)testBoardPushDown
+{
+    Board *board = [[Board alloc] initWithWidth:5 Height:5];
+    
+    // First Column
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:0];
+    
+    // Second Column
+    [board setTile:[[Tile alloc] initWithNumber:4] AtRow:0 Column:1];
+    [board setTile:[[Tile alloc] initWithNumber:4] AtRow:2 Column:1];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:3 Column:1];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:4 Column:1];
+    
+    // Thrid column
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:0 Column:2];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:2];
+    [board setTile:[[Tile alloc] initWithNumber:2] AtRow:4 Column:2];
+    
+    [board pushDown];
+    
+    XCTAssertEqual(2, [board getTileAtRow:4 Column:0].number);
+    
+    XCTAssertEqual(8, [board getTileAtRow:3 Column:1].number);
+    XCTAssertEqual(4, [board getTileAtRow:4 Column:1].number);
+    
+    XCTAssertEqual(4, [board getTileAtRow:4 Column:2].number);
+    XCTAssertEqual(2, [board getTileAtRow:3 Column:2].number);
+}
+
 @end
