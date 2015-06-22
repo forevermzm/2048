@@ -43,20 +43,24 @@
 - (void)testBoardPushRight
 {
     Board *board = [[Board alloc] initWithWidth:5 Height:5];
+    XCTAssertEqual(25, [board numberOfRemainingSpots]);
     
     // First row
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:0 Column:2];
+    XCTAssertEqual(24, [board numberOfRemainingSpots]);
     
     // Second row
     [board setTile:[[Tile alloc] initWithNumber:4] AtRow:1 Column:0];
     [board setTile:[[Tile alloc] initWithNumber:4] AtRow:1 Column:2];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:1 Column:3];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:1 Column:4];
+    XCTAssertEqual(20, [board numberOfRemainingSpots]);
     
     // Third row
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:0];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:2];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:4];
+    XCTAssertEqual(17, [board numberOfRemainingSpots]);
     
     [board pushRight];
     
@@ -67,6 +71,8 @@
     
     XCTAssertEqual(2, [board getTileAtRow:2 Column:3].number);
     XCTAssertEqual(4, [board getTileAtRow:2 Column:4].number);
+    
+    XCTAssertEqual(20, [board numberOfRemainingSpots]);
 }
 
 - (void)testBoardPushLeft
@@ -75,17 +81,20 @@
     
     // First row
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:0 Column:2];
+    XCTAssertEqual(24, [board numberOfRemainingSpots]);
     
     // Second row
     [board setTile:[[Tile alloc] initWithNumber:4] AtRow:1 Column:0];
     [board setTile:[[Tile alloc] initWithNumber:4] AtRow:1 Column:2];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:1 Column:3];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:1 Column:4];
+    XCTAssertEqual(20, [board numberOfRemainingSpots]);
     
     // Third row
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:0];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:2];
     [board setTile:[[Tile alloc] initWithNumber:2] AtRow:2 Column:4];
+    XCTAssertEqual(17, [board numberOfRemainingSpots]);
     
     [board pushLeft];
     
@@ -96,6 +105,7 @@
     
     XCTAssertEqual(4, [board getTileAtRow:2 Column:0].number);
     XCTAssertEqual(2, [board getTileAtRow:2 Column:1].number);
+    XCTAssertEqual(20, [board numberOfRemainingSpots]);
 }
 
 - (void)testBoardPushUp
@@ -125,6 +135,7 @@
     
     XCTAssertEqual(4, [board getTileAtRow:0 Column:2].number);
     XCTAssertEqual(2, [board getTileAtRow:1 Column:2].number);
+    XCTAssertEqual(20, [board numberOfRemainingSpots]);
 }
 
 - (void)testBoardPushDown
@@ -154,6 +165,8 @@
     
     XCTAssertEqual(4, [board getTileAtRow:4 Column:2].number);
     XCTAssertEqual(2, [board getTileAtRow:3 Column:2].number);
+    
+    XCTAssertEqual(20, [board numberOfRemainingSpots]);
 }
 
 @end

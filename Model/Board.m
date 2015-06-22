@@ -21,8 +21,6 @@
 
 #pragma mark - Public_api
 
-#pragma mark - Index_Swithing
-
 - ( instancetype ) initWithWidth:(NSUInteger)width Height:(NSUInteger)height
 {
     self = [ super init ];
@@ -39,28 +37,31 @@
     return self;
 }
 
-- (NSUInteger) getIndexFromRow: (NSUInteger) row Column: (NSUInteger) column
+- ( void ) setTile:(Tile *)tile AtRemainingSpace:(NSUInteger)spaceIndex
 {
-    if ( row >= _height || column >= _width ) {
-        [NSException raise:@"Index out of Bounds" format:@"Row %lu and Column %lu are invalid.",row ,column];
+    if ( spaceIndex >= self.numberOfRemainingSpots ) {
+        [NSException raise:@"Index Out Of Bounds" format:@"Space Index is out of bound"];
     }
-    return row * _width + column;
-}
-
-- (NSArray *) getColumnAndRowFromIndex: ( NSUInteger) index
-{
-    if ( index >= _height * _width ) {
-        [NSException raise:@"Index out of Bounds" format:@"Index %lu is invalid.",index];
+    for ( NSInteger i = 0; i < [self.tiles count] ; i ++ ) {
+        Tile *tile = ( Tile *)[self.tiles objectAtIndex:i];
+        if ( spaceIndex == 0 ){
+            NSArray *rowAndColumn = [self getRowAndColumnFromIndex:i];
+            [self setTile:tile
+                    AtRow:[[rowAndColumn firstObject] integerValue]
+                   Column:[[rowAndColumn objectAtIndex:1] integerValue]];
+            break;
+        }
+        if ( tile.number == 0 ) {
+            spaceIndex -= 1;
+        }
     }
-    NSUInteger row = index / _width;
-    NSUInteger column = index - row * _width;
-    return @[[NSNumber numberWithInteger:row], [NSNumber numberWithInteger:column]];
 }
 
 - ( void ) setTile:(Tile *) tile AtRow: (NSUInteger)row Column: (NSUInteger)column
 {
     NSUInteger index = [self getIndexFromRow:row Column:column];
     [_tiles replaceObjectAtIndex:index withObject:tile];
+    self.numberOfRemainingSpots -= 1;
 }
 
 - ( Tile * ) getTileAtRow: (NSUInteger) row Column: (NSUInteger) column
@@ -69,7 +70,7 @@
     return [_tiles objectAtIndex:index];
 }
 
-#pragma mark - Push_Board
+#pragma mark Push_Board
 
 - (void) pushRight
 {
@@ -86,7 +87,11 @@
             [self setTile:tile AtRow:row Column:column];
             column -= 1;
         }
+        for ( ; column >= 0 ; column --) {
+            [self setTile:[[Tile alloc] initWithNumber:0] AtRow: row Column:column];
+        }
     }
+    [self calculateRemainingSpace];
 }
 
 
@@ -103,7 +108,11 @@
             [self setTile:tile AtRow:row Column:column];
             column += 1;
         }
+        for (; column < _width; column ++) {
+            [self setTile:[[Tile alloc] initWithNumber:0] AtRow: row Column:column];
+        }
     }
+    [self calculateRemainingSpace];
 }
 
 - (void) pushUp
@@ -121,7 +130,11 @@
             [self setTile:tile AtRow:row Column:column];
             row += 1;
         }
+        for (; row < _height; row ++) {
+            [self setTile:[[Tile alloc] initWithNumber:0] AtRow: row Column:column];
+        }
     }
+    [self calculateRemainingSpace];
 }
 
 - (void) pushDown
@@ -139,7 +152,11 @@
             [self setTile:tile AtRow:row Column:column];
             row -= 1;
         }
+        for (; row >= 0; row --) {
+            [self setTile:[[Tile alloc] initWithNumber:0] AtRow: row Column:column];
+        }
     }
+    [self calculateRemainingSpace];
 }
 
 - (void) print
@@ -186,8 +203,36 @@
     return result;
 }
 
+- (void) calculateRemainingSpace
+{
+    NSInteger remainingSpaceCount = 0;
+    for (Tile *tile in self.tiles) {
+        if (tile.number == 0) {
+            remainingSpaceCount ++;
+        }
+    }
+    [self setNumberOfRemainingSpots:remainingSpaceCount];
+}
 
+#pragma mark Index_Swithing
 
+- (NSUInteger) getIndexFromRow: (NSInteger) row Column: (NSInteger) column
+{
+    if ( row >= _height || column >= _width ) {
+        [NSException raise:@"Index out of Bounds" format:@"Row %lu and Column %lu are invalid.",row ,column];
+    }
+    return row * _width + column;
+}
+
+- (NSArray *) getRowAndColumnFromIndex: ( NSInteger) index
+{
+    if ( index >= _height * _width ) {
+        [NSException raise:@"Index out of Bounds" format:@"Index %lu is invalid.",index];
+    }
+    NSUInteger row = index / _width;
+    NSUInteger column = index - row * _width;
+    return @[[NSNumber numberWithInteger:row], [NSNumber numberWithInteger:column]];
+}
 
 
 

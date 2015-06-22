@@ -7,6 +7,7 @@
 //
 
 #import "Game.h"
+#include <stdlib.h>
 
 @interface Game ()
 
@@ -27,6 +28,7 @@
     if (self) {
         _board = [[Board alloc] initWithWidth:width
                                        Height:height];
+        [self putNewTile];
         _totalScore = 0;
         _directionArray = @[@"Up", @"Right", @"Down", @"Left"];
     }
@@ -63,7 +65,10 @@
 
 -(void) putNewTile
 {
+    NSInteger indexToPut = arc4random_uniform((u_int32_t)[self.board numberOfRemainingSpots]);
+    NSInteger tileNumber = arc4random_uniform(2) == 0 ? 2 : 4;
     
+    [self.board setTile:[[Tile alloc] initWithNumber:tileNumber] AtRemainingSpace:indexToPut];
 }
 
 @end

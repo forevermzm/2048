@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D81363481B36B71300A37E40 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D81363471B36B71300A37E40 /* README.md */; };
 		D892877D1B128CC800C1A51D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D892877C1B128CC800C1A51D /* main.m */; };
 		D89287801B128CC800C1A51D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D892877F1B128CC800C1A51D /* AppDelegate.m */; };
 		D89287831B128CC800C1A51D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287821B128CC800C1A51D /* ViewController.m */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D81363471B36B71300A37E40 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D89287771B128CC800C1A51D /* 2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D892877B1B128CC800C1A51D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D892877C1B128CC800C1A51D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		D892876E1B128CC800C1A51D = {
 			isa = PBXGroup;
 			children = (
+				D81363471B36B71300A37E40 /* README.md */,
 				D89287B21B12D2DA00C1A51D /* View */,
 				D89287A01B128CF900C1A51D /* Model */,
 				D89287791B128CC800C1A51D /* 2048 */,
@@ -266,6 +269,7 @@
 				D89287C41B14510000C1A51D /* Game.m in Sources */,
 				D89287C11B14068600C1A51D /* Grid.m in Sources */,
 				D892877D1B128CC800C1A51D /* main.m in Sources */,
+				D81363481B36B71300A37E40 /* README.md in Sources */,
 				D89287AF1B128F2900C1A51D /* Tile.m in Sources */,
 				D89287B11B12906900C1A51D /* Board.m in Sources */,
 			);
@@ -462,6 +466,7 @@
 				D892879C1B128CC800C1A51D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D892879D1B128CC800C1A51D /* Build configuration list for PBXNativeTarget "2048Tests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +475,7 @@
 				D892879F1B128CC800C1A51D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
