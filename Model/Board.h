@@ -21,14 +21,14 @@
                           Height: (NSUInteger) height;
 
 - ( void ) setTile: (Tile *) tile
-             AtRow: (NSInteger) row
-            Column: (NSInteger) column;
+             AtRow: (NSUInteger) row
+            Column: (NSUInteger) column;
 
 - ( void ) setTile: (Tile *) tile
-  AtRemainingSpace: (NSInteger) spaceIndex;
+  AtRemainingSpace: (NSUInteger) spaceIndex;
 
-- ( Tile * ) getTileAtRow: (NSInteger) row
-                   Column: (NSInteger) column;
+- ( Tile * ) getTileAtRow: (NSUInteger) row
+                   Column: (NSUInteger) column;
 
 - (void) pushRight;
 - (void) pushLeft;

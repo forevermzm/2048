@@ -16,50 +16,93 @@
 
 @property (strong, nonatomic) Game *game;
 @property (strong, nonatomic) Grid *grid;
+@property (nonatomic) NSInteger width;
+@property (nonatomic) NSInteger height;
 @end
 
 @implementation ViewController
 
+#pragma mark - SetUp Methods
+
 - (void)setup
 {
-    NSInteger width = 6;
-    NSInteger height = 6;
-    self.game = [[Game alloc] initWithWidth:width Height:height];
+    _width = GAME_WIDTH;
+    _height = GAME_HEIGHT;
+    [self setupGame];
+    [self setupGrid];
+    [self setupGestureRecognizer];
     
     [self showBoard];
     
 }
 
+- (void)setupGame
+{
+    self.game = [[Game alloc] initWithWidth:_width Height:_height];
+}
+
+- (void)setupGrid
+{
+    _grid = [[Grid alloc] init];
+    [_grid setSize:self.boardView.bounds.size];
+    [_grid setCellAspectRatio:1.0];
+    [_grid setMinimumNumberOfCells:_width * _height];
+}
+
+- (void)setupGestureRecognizer
+{
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.boardView addGestureRecognizer:swipeLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(didSwipe:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.boardView addGestureRecognizer:swipeRight];
+    
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc]  initWithTarget:self action:@selector(didSwipe:)];
+    swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.boardView addGestureRecognizer:swipeUp];
+    
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.boardView addGestureRecognizer:swipeDown];
+}
+
+- (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
+    
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self.game pushTo:@"Left"];
+    } else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        [self.game pushTo:@"Right"];
+    } else if (swipe.direction == UISwipeGestureRecognizerDirectionUp) {
+        [self.game pushTo:@"Up"];
+    } else if (swipe.direction == UISwipeGestureRecognizerDirectionDown) {
+        [self.game pushTo:@"Down"];
+    }
+    [self showBoard];
+}
+
+#pragma mark - Utilities Methods
+
 - (void) showBoard
 {
     Board *board = self.game.board;
-    [board print];
+    for (int i = 0 ; i < _width; i ++ ) {
+        for (int j = 0 ; j < _height; j ++ ) {
+            Tile *tile = [board getTileAtRow:i Column:j];
+            TileView *tileView = [[TileView alloc] initWithFrame:[_grid resizedFrameOfCellAtRow:i
+                                                                                   inColumn:j
+                                                                                  withRatio:0.9]];
+            [tileView setNumber:tile.number];
+            [self.boardView addSubview:tileView];
+        }
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setup];
-    // Do any additional setup after loading the view, typically from a nib.
-    Grid *grid = [[Grid alloc] init];
-    [grid setSize:self.boardView.bounds.size];
-    [grid setCellAspectRatio:1.0];
-    [grid setMinimumNumberOfCells:25];
-    
-    
-    
-//    CGRect viewRect = CGRectMake(10, 10, 100, 100);
-    TileView *tileView = [[TileView alloc] initWithFrame:[grid resizedFrameOfCellAtRow:0
-                                                                              inColumn:0
-                                                                             withRatio:0.9]];
-    TileView *anotherTileView = [[TileView alloc] initWithFrame:[grid resizedFrameOfCellAtRow:0
-                                                                                     inColumn:1
-                                                                                    withRatio:0.9]];
-    [tileView setNumber:2];
-    [anotherTileView setNumber:4];
-    [self.boardView addSubview:tileView];
-    [self.boardView addSubview:anotherTileView];
-    
 }
 
 - (void)didReceiveMemoryWarning {

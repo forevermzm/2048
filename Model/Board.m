@@ -43,7 +43,7 @@
         [NSException raise:@"Index Out Of Bounds" format:@"Space Index is out of bound"];
     }
     for ( NSInteger i = 0; i < [self.tiles count] ; i ++ ) {
-        Tile *tile = ( Tile *)[self.tiles objectAtIndex:i];
+        Tile *currentTile = ( Tile *)[self.tiles objectAtIndex:i];
         if ( spaceIndex == 0 ){
             NSArray *rowAndColumn = [self getRowAndColumnFromIndex:i];
             [self setTile:tile
@@ -51,7 +51,7 @@
                    Column:[[rowAndColumn objectAtIndex:1] integerValue]];
             break;
         }
-        if ( tile.number == 0 ) {
+        if ( currentTile.number == 0 ) {
             spaceIndex -= 1;
         }
     }
@@ -216,7 +216,7 @@
 
 #pragma mark Index_Swithing
 
-- (NSUInteger) getIndexFromRow: (NSInteger) row Column: (NSInteger) column
+- (NSUInteger) getIndexFromRow: (NSUInteger) row Column: (NSUInteger) column
 {
     if ( row >= _height || column >= _width ) {
         [NSException raise:@"Index out of Bounds" format:@"Row %lu and Column %lu are invalid.",row ,column];
@@ -224,7 +224,7 @@
     return row * _width + column;
 }
 
-- (NSArray *) getRowAndColumnFromIndex: ( NSInteger) index
+- (NSArray *) getRowAndColumnFromIndex: ( NSUInteger) index
 {
     if ( index >= _height * _width ) {
         [NSException raise:@"Index out of Bounds" format:@"Index %lu is invalid.",index];

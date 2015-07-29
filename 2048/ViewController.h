@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+#define GAME_WIDTH 6
+#define GAME_HEIGHT 6
 
 @end
 

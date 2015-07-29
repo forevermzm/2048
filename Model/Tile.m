@@ -19,4 +19,8 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat: @"Tile is: %lu", (unsigned long)_number];
+}
+
 @end
