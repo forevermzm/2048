@@ -71,14 +71,15 @@
 - (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
     
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-        [self.game pushTo:@"Left"];
+        [self.game pushTo:[self.game.directionArray objectAtIndex:3]];
     } else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        [self.game pushTo:@"Right"];
+        [self.game pushTo:[self.game.directionArray objectAtIndex:1]];
     } else if (swipe.direction == UISwipeGestureRecognizerDirectionUp) {
-        [self.game pushTo:@"Up"];
+        [self.game pushTo:[self.game.directionArray objectAtIndex:0]];
     } else if (swipe.direction == UISwipeGestureRecognizerDirectionDown) {
-        [self.game pushTo:@"Down"];
+        [self.game pushTo:[self.game.directionArray objectAtIndex:2]];
     }
+    [self.game putRandomTileInBoard];
     [self showBoard];
 }
 

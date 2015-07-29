@@ -18,9 +18,11 @@
 -(instancetype) initWithWidth: (NSUInteger) width
                        Height: (NSUInteger) height;
 
-// These methods are for the gestures.
+// This method is for the gestures.
 - (void) pushTo: (NSString *) direction;
 
+// This method should generate a new tile of either 2 or 4 and put in a remaining space.
+- (void) putRandomTileInBoard;
 
 -(BOOL) isGameFinished;
 

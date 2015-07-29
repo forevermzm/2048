@@ -35,6 +35,11 @@
     return self;
 }
 
+- (void) putRandomTileInBoard
+{
+    [self putNewTile];
+}
+
 - (void) pushTo:(NSString *)direction
 {
     NSUInteger directionIndex = [_directionArray indexOfObject:direction];
