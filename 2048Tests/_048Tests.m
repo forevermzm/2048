@@ -10,6 +10,12 @@
 #import <XCTest/XCTest.h>
 #import "Board.h"
 
+#define HC_SHORTHAND
+#import <OCHamcrestIOS/OCHamcrestIOS.h>
+
+#define MOCKITO_SHORTHAND
+#import <OCMockitoIOS/OCMockitoIOS.h>
+
 @interface _048Tests : XCTestCase
 
 @end

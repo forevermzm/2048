@@ -20,6 +20,8 @@
 		D89287B81B12D3CF00C1A51D /* TileView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287B71B12D3CF00C1A51D /* TileView.m */; };
 		D89287C11B14068600C1A51D /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287C01B14068600C1A51D /* Grid.m */; };
 		D89287C41B14510000C1A51D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = D89287C31B14510000C1A51D /* Game.m */; };
+		D8AE54F41BBFD60D00C736FA /* OCHamcrestIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AE54F21BBFD3F100C736FA /* OCHamcrestIOS.framework */; };
+		D8AE54F71BBFD6E000C736FA /* OCMockitoIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AE54F51BBFD6B400C736FA /* OCMockitoIOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		D89287C01B14068600C1A51D /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 		D89287C21B1450E600C1A51D /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Model/Game.h; sourceTree = "<group>"; };
 		D89287C31B14510000C1A51D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Model/Game.m; sourceTree = "<group>"; };
+		D8AE54F21BBFD3F100C736FA /* OCHamcrestIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCHamcrestIOS.framework; sourceTree = "<group>"; };
+		D8AE54F51BBFD6B400C736FA /* OCMockitoIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMockitoIOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AE54F71BBFD6E000C736FA /* OCMockitoIOS.framework in Frameworks */,
+				D8AE54F41BBFD60D00C736FA /* OCHamcrestIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,8 @@
 		D892876E1B128CC800C1A51D = {
 			isa = PBXGroup;
 			children = (
+				D8AE54F51BBFD6B400C736FA /* OCMockitoIOS.framework */,
+				D8AE54F21BBFD3F100C736FA /* OCHamcrestIOS.framework */,
 				D81363471B36B71300A37E40 /* README.md */,
 				D89287B21B12D2DA00C1A51D /* View */,
 				D89287A01B128CF900C1A51D /* Model */,
@@ -397,8 +405,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = 2048/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -407,8 +420,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = 2048/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -417,9 +435,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -427,6 +447,12 @@
 				);
 				INFOPLIST_FILE = 2048Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/2048.app/2048";
 			};
@@ -436,12 +462,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = 2048Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/2048.app/2048";
 			};
