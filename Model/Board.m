@@ -19,6 +19,44 @@
 
 @implementation Board
 
+#pragma mark - Override
+
+-(BOOL)isEqual:(id)object
+{
+    if ( [object isKindOfClass: [self class]] )
+    {
+        Board *otherBoard = ( Board * ) object;
+        return [self isEqualToBoard: otherBoard];
+    } else
+    {
+        return FALSE;
+    }
+}
+
+-(BOOL)isEqualToBoard:(Board *) otherBoard
+{
+    if ( _width != otherBoard.width )
+    {
+        return FALSE;
+    } else if ( _height != otherBoard.height )
+    {
+        return FALSE;
+    } else
+    {
+        return [_tiles isEqualToArray:otherBoard.tiles];
+    }
+}
+
+- (NSUInteger) hash
+{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    
+    result = prime * result + [_tiles hash];
+    
+    return result;
+}
+
 #pragma mark - Public_api
 
 - ( instancetype ) initWithWidth:(NSUInteger)width Height:(NSUInteger)height

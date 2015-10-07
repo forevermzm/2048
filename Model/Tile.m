@@ -10,6 +10,32 @@
 
 @implementation Tile
 
+#pragma mark - Override
+
+-(BOOL)isEqual:(id)object
+{
+    if ( [object isKindOfClass: [self class]] )
+    {
+        Tile *otherTile = ( Tile * ) object;
+        return _number == otherTile.number;
+    } else
+    {
+        return FALSE;
+    }
+}
+
+- (NSUInteger) hash
+{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    
+    result = prime * result + _number;
+    
+    return result;
+}
+
+#pragma mark - public methods
+
 - ( instancetype ) initWithNumber: (NSUInteger) number
 {
     self = [ super init ];
